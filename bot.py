@@ -9,6 +9,7 @@ load_dotenv()
 logging.basicConfig(level=logging.DEBUG)
 
 ELLIE_SLACK_USER_ID = "idk"
+ELLIES_ENGINEERING_CHANNEL_ID = "idk"
 
 app = App(token=os.environ["SLACK_BOT_TOKEN"], signing_secret=os.environ["SLACK_SIGNING_SECRET"])
 
@@ -37,10 +38,8 @@ def handle_message_event(body, logger, event, client):
 
 def send_daily_schoology_check():
     msg = get_due_tomorrow(ELLIE_SLACK_USER_ID)
-    result = app.client.conversations_list()
-    general = next((c for c in result["channels"] if c["name"] == "general"), None)
-    if general and msg:
-        app.client.chat_postMessage(channel=general["id"], text=msg)
+    if msg:
+        app.client.chat_postMessage(channel=ELLIES_ENGINEERING_CHANNEL_ID, text=msg)
 
 scheduler = BackgroundScheduler(timezone="America/New_York")
 scheduler.add_job(send_daily_schoology_check, 'cron', hour=14, minute=0)
