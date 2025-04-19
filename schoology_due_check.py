@@ -28,5 +28,3 @@ def get_due_tomorrow(ellie_user_id):
 
     if due:
         return f"<@{ellie_user_id}> due tomorrow: " + ", ".join(due)
-    else:
-        return f"<@{ellie_user_id}> no assignments due tomorrow :yay:"
