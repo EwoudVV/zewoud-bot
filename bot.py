@@ -8,8 +8,8 @@ from schoology_due_check import get_due_tomorrow
 load_dotenv()
 logging.basicConfig(level=logging.DEBUG)
 
-ELLIE_SLACK_USER_ID = "idk"
-ELLIES_ENGINEERING_CHANNEL_ID = "idk"
+ELLIE_SLACK_USER_ID = "U06MMBZBFAN"
+ELLIES_ENGINEERING_CHANNEL_ID = "C085QFM80G7"
 
 app = App(token=os.environ["SLACK_BOT_TOKEN"], signing_secret=os.environ["SLACK_SIGNING_SECRET"])
 
