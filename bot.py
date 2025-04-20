@@ -24,7 +24,7 @@ def handle_mention(event, say, logger):
     say("aaaaa")
 
 @app.event("message")
-def handle_message_event(body, logger, event, client):
+def handle_message_event(say, body, logger, event, client):
     logger.info(f"INCOMING MESSAGE EVENT: {event}")
     if event.get('subtype') is None:
         text = event.get('text', '').strip().lower()
@@ -34,6 +34,7 @@ def handle_message_event(body, logger, event, client):
 
         elif text == 'due tomorrow':
             msg = get_due_tomorrow(ELLIE_SLACK_USER_ID)
+            say("eeeeee")
             client.chat_postMessage(channel=event["channel"], text=msg)
 
 def send_daily_schoology_check():
